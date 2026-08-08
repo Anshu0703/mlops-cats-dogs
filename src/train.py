@@ -18,6 +18,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 from model import SimpleCNN
 from dataset import get_dataloaders
+import model
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
 
@@ -136,7 +137,8 @@ def main(epochs: int, lr: float, batch_size: int):
         model_path = MODELS_DIR / "model.pt"
         torch.save(model.state_dict(), model_path)
         mlflow.log_artifact(str(model_path))
-        mlflow.pytorch.log_model(model, name="pytorch_model")
+        sample_input = torch.randn(1, 3, 224, 224).to(device)
+        mlflow.pytorch.log_model(model, name="pytorch_model", input_example=sample_input.cpu().numpy())
 
         print(f"Model saved to {model_path}")
         print("MLflow run complete. Launch `mlflow ui` to view results.")
