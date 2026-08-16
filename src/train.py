@@ -137,8 +137,7 @@ def main(epochs: int, lr: float, batch_size: int):
         model_path = MODELS_DIR / "model.pt"
         torch.save(model.state_dict(), model_path)
         mlflow.log_artifact(str(model_path))
-        sample_input = torch.randn(1, 3, 224, 224).to(device)
-        mlflow.pytorch.log_model(model, name="pytorch_model", input_example=sample_input.cpu().numpy())
+        mlflow.pytorch.log_model(model, name="pytorch_model", serialization_format="pickle")
 
         print(f"Model saved to {model_path}")
         print("MLflow run complete. Launch `mlflow ui` to view results.")
