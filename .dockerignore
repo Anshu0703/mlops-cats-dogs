@@ -1,0 +1,11 @@
+venv/
+data/
+notebooks/
+.git/
+.dvc/
+mlruns/
+mlflow.db
+__pycache__/
+*.pyc
+models/loss_curve.png
+models/confusion_matrix.png
