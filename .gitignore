@@ -1,6 +1,6 @@
-venv/ 
-
+venv/
 mlflow.db
 __pycache__/
 models/*.pt
 models/*.png
+monitoring/logs/
