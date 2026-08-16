@@ -1,0 +1,10 @@
+services:
+  api:
+    image: ${IMAGE_NAME:-cats-dogs-api}:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    container_name: cats-dogs-container
+    restart: unless-stopped
